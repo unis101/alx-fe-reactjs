@@ -11,7 +11,9 @@ export const useRecipeStore = create((set) => ({
   setRecipes: (recipes) => set({ recipes }),
 
   addFavorite: (recipeId) =>
-    set((state) => ({ favorites: [...state.favorites, recipeId] })),
+    set((state) => ({
+      favorites: [...state.favorites, recipeId],
+    })),
 
   removeFavorite: (recipeId) =>
     set((state) => ({
@@ -20,6 +22,7 @@ export const useRecipeStore = create((set) => ({
 
   generateRecommendations: () =>
     set((state) => {
+      // Simple mock logic: randomly recommend from favorites
       const recommended = state.recipes.filter(
         (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
       );
